@@ -38,19 +38,14 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <HomePage /> },
+        { path: 'events', element: <EventLayout />, children: [
+          { index: true, element: <EventsPage /> },
+          { path: ':eventId', element: <EventDetailPage /> },
+          { path: 'new', element: <NewEventPage /> },
+          { path: ':eventId/edit', element: <EventEditPage /> },
+        ]}
       ]
     },
-    {
-      path: 'events',
-      element: <EventLayout />,
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <EventsPage /> },
-        { path: ':eventId', element: <EventDetailPage /> },
-        { path: 'new', element: <NewEventPage /> },
-        { path: ':eventId/edit', element: <EventEditPage /> },
-      ]
-    }
   ]);
 
   return <RouterProvider router={router} />;
