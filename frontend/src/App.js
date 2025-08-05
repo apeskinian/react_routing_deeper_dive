@@ -23,12 +23,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RouteLayout from "./pages/Root";
 import HomePage from "./pages/Home";
-import EventsPage from "./pages/Events";
+import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import ErrorPage from "./pages/Error";
 import EventDetailPage from "./pages/EventDetails";
 import NewEventPage from "./pages/NewEvent";
 import EventEditPage from "./pages/EditEvent";
 import EventLayout from "./pages/EventLayout";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -39,7 +40,12 @@ function App() {
       children: [
         { index: true, element: <HomePage /> },
         { path: 'events', element: <EventLayout />, children: [
-          { index: true, element: <EventsPage /> },
+          { index: true,
+            element: <EventsPage />,
+            // the loader prop starts to fetch the data for the page when it's
+            // loading so you don't have to have this code in the page
+            loader: eventsLoader
+          },
           { path: ':eventId', element: <EventDetailPage /> },
           { path: 'new', element: <NewEventPage /> },
           { path: ':eventId/edit', element: <EventEditPage /> },
