@@ -26,9 +26,11 @@ import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import ErrorPage from "./pages/Error";
 import EventDetailPage, { loader as eventDetailLoader, action as deleteEventAction } from "./pages/EventDetails";
-import NewEventPage, { action as newEventAction } from "./pages/NewEvent";
+import NewEventPage from "./pages/NewEvent";
 import EventEditPage from "./pages/EditEvent";
 import EventLayout from "./pages/EventLayout";
+import { action as eventAction } from './components/EventForm';
+import NewsletterPage, { action as newsletterAction } from "./components/Newsletter";
 
 
 function App() {
@@ -56,11 +58,12 @@ function App() {
                 element: <EventDetailPage />,
                 action: deleteEventAction
               },
-              { path: 'edit', element: <EventEditPage /> },
+              { path: 'edit', element: <EventEditPage />, action: eventAction },
             ],
           },
-          { path: 'new', element: <NewEventPage />, action: newEventAction },
-        ]}
+          { path: 'new', element: <NewEventPage />, action: eventAction },
+        ]},
+        { path: 'newsletter', element: <NewsletterPage />, action: newsletterAction },
       ]
     },
   ]);

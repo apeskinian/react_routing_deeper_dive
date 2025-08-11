@@ -8,7 +8,7 @@ function EventEditPage() {
 
     return (
         <>
-            <EventForm event={event}/>
+            <EventForm event={event} method='patch' />
             <p><Link to='..' relative="path">Back</Link></p>
         </>
     )
