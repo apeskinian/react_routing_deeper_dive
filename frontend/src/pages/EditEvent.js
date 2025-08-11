@@ -1,9 +1,8 @@
-import { Link, useRouteLoaderData, useOutletContext } from "react-router-dom";
+import { Link, useRouteLoaderData } from "react-router-dom";
 
 import EventForm from '../components/EventForm';
 
 function EventEditPage() {
-    // const data = useOutletContext();
     const data = useRouteLoaderData('event-detail');
     const event = data.event;
 

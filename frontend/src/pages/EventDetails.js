@@ -1,9 +1,8 @@
-import { useOutletContext, useRouteLoaderData } from 'react-router-dom';
+import { redirect, useRouteLoaderData } from 'react-router-dom';
 
 import EventItem from '../components/EventItem';
 
 function EventDetailPage() {
-    // const data = useOutletContext();
     const data = useRouteLoaderData('event-detail');
 
     return (
@@ -26,3 +25,20 @@ export async function loader({request, params}) {
         return response;
     }
 };
+
+export async function action({request, params}) {
+    const eventId = params.eventId;
+
+    const response = await fetch('http://localhost:8080/events/' + eventId, {
+        method: request.method,
+    });
+
+    if (!response.ok) {
+        throw new Response(JSON.stringify(
+            { message: 'Could not delete selected event.'}),
+            {status: 500}
+        );
+    }
+
+    return redirect('/events');
+}

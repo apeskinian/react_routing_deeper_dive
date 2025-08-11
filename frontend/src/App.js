@@ -25,7 +25,7 @@ import RouteLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import ErrorPage from "./pages/Error";
-import EventDetailPage, { loader as eventDetailLoader } from "./pages/EventDetails";
+import EventDetailPage, { loader as eventDetailLoader, action as deleteEventAction } from "./pages/EventDetails";
 import NewEventPage, { action as newEventAction } from "./pages/NewEvent";
 import EventEditPage from "./pages/EditEvent";
 import EventLayout from "./pages/EventLayout";
@@ -54,6 +54,7 @@ function App() {
               { 
                 index: true,
                 element: <EventDetailPage />,
+                action: deleteEventAction
               },
               { path: 'edit', element: <EventEditPage /> },
             ],
