@@ -25,7 +25,7 @@ import RouteLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
 import ErrorPage from "./pages/Error";
-import EventDetailPage, { loader as eventsDetailLoader } from "./pages/EventDetails";
+import EventDetailPage, { loader as eventDetailLoader } from "./pages/EventDetails";
 import NewEventPage from "./pages/NewEvent";
 import EventEditPage from "./pages/EditEvent";
 import EventLayout from "./pages/EventLayout";
@@ -46,12 +46,19 @@ function App() {
             // loading so you don't have to have this code in the page
             loader: eventsLoader
           },
-          { path: ':eventId',
-            element: <EventDetailPage />,
-            loader: eventsDetailLoader
+          {
+            path: ':eventId',
+            id: 'event-detail',
+            loader: eventDetailLoader,
+            children: [
+              { 
+                index: true,
+                element: <EventDetailPage />,
+              },
+              { path: 'edit', element: <EventEditPage /> },
+            ],
           },
           { path: 'new', element: <NewEventPage /> },
-          { path: ':eventId/edit', element: <EventEditPage /> },
         ]}
       ]
     },

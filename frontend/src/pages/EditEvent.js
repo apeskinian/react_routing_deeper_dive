@@ -1,12 +1,15 @@
-import { useParams, Link } from "react-router-dom";
+import { Link, useRouteLoaderData, useOutletContext } from "react-router-dom";
+
+import EventForm from '../components/EventForm';
 
 function EventEditPage() {
-    const params= useParams();
+    // const data = useOutletContext();
+    const data = useRouteLoaderData('event-detail');
+    const event = data.event;
 
     return (
         <>
-            <h1>Edit Event Details!</h1>
-            <p>{params.eventId}</p>
+            <EventForm event={event}/>
             <p><Link to='..' relative="path">Back</Link></p>
         </>
     )
